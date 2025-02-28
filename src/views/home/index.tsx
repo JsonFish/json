@@ -72,7 +72,7 @@ export default defineComponent({
                 class="mb-2"
                 size="1.5rem"
                 timeSpace={1}
-                wordPrintTime={0.15}
+                wordPrintTime={0.1}
                 typeList={[
                   '一名前端开发实习生。',
                   'A Front End Development Intern 💻.',
