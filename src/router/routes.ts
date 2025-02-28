@@ -28,16 +28,16 @@ export const constantRoute = [
           icon: 'Tickets',
         },
       },
-      {
-        path: '/daily',
-        component: () => import('@/views/daily/index.tsx'),
-        name: 'daily',
-        meta: {
-          title: '日常',
-          show: true,
-          icon: 'PartlyCloudy',
-        },
-      },
+      // {
+      //   path: '/daily',
+      //   component: () => import('@/views/daily/index.tsx'),
+      //   name: 'daily',
+      //   meta: {
+      //     title: '日常',
+      //     show: true,
+      //     icon: 'PartlyCloudy',
+      //   },
+      // },
       {
         path: '/friendLink',
         component: () => import('@/views/friendLink/index.tsx'),
