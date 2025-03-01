@@ -75,7 +75,7 @@ export default defineComponent({
                 wordPrintTime={0.1}
                 typeList={[
                   '一名前端开发实习生。',
-                  'A Front End Development Intern 💻.',
+                  'A Front End Development Intern .',
                 ]}
               />
               <div class="text-2xl mb-4 flex items-center">
