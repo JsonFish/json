@@ -9,14 +9,14 @@ export default defineComponent({
   setup() {
     const router = useRouter()
     const articleList = ref<any>([])
-    const currentPage = ref<number>(1)
+    const page = ref<number>(1)
     const pageSize = ref<number>(100)
     const total = ref<number>(0)
     onMounted(async () => {
       await getArticle()
     })
     const getArticle = async () => {
-      await getArticleList(currentPage.value, pageSize.value).then(
+      await getArticleList(page.value, pageSize.value).then(
         (response) => {
           articleList.value = response.data.articleList
           total.value = response.data.total
@@ -58,12 +58,12 @@ export default defineComponent({
                     <div class="w-full py-2">
                       <div onClick={() => toArticle(item.id)}>
                         <span class="text-xl font-bold line-clamp-1 hover:cursor-pointer">
-                          {item.articleTitle}
+                          {item.title}
                         </span>
                       </div>
                       <div class="mt-2 h-12" onClick={() => toArticle(item.id)}>
                         <el-text class="line-clamp-2 hover:cursor-pointer">
-                          {item.articleSummary}
+                          {item.description}
                         </el-text>
                       </div>
                       <div class="flex justify-between">
@@ -72,7 +72,7 @@ export default defineComponent({
                             <el-icon size="14" class="mr-1">
                               <View />
                             </el-icon>
-                            <span class="text-xs">{item.browse}</span>
+                            <span class="text-xs">{item.views}</span>
                           </div>
                           <div class="flex items-center">
                             {item.tags?.map((item: any) => {
@@ -97,7 +97,7 @@ export default defineComponent({
                         </div>
                         <div>
                           <span class="text-xs">
-                            {formatDate(item.create_time)}
+                            {formatDate(item.createTime)}
                           </span>
                         </div>
                       </div>

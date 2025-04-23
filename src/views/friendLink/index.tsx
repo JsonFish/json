@@ -16,17 +16,17 @@ export default defineComponent({
     const linkFormRef = ref<FormInstance>()
     const fileList = ref<UploadUserFile[]>([])
     const linkForm = reactive<LinkInfo>({
-      siteAvatar: '',
-      siteName: '',
-      siteDesc: '',
-      siteUrl: '',
+      avatar: '',
+      name: '',
+      description: '',
+      link: '',
     })
     onMounted(() => {
       getLinkList()
     })
     const getLinkList = () => {
       getLink().then((response) => {
-        linkList.value = response.data
+        linkList.value = response.data.linkList
       })
     }
     // 跳转
@@ -62,13 +62,13 @@ export default defineComponent({
       if (!formEl) return
       // 是否选择了头像
       if (fileList.value.length) {
-        linkForm.siteAvatar = fileList.value
+        linkForm.avatar = fileList.value
       }
       formEl.validate(async (valid) => {
         if (valid) {
           // 上传头像
           await uploadFile(fileList.value).then((res: any) => {
-            linkForm.siteAvatar = res.url
+            linkForm.avatar = res.url
           })
           applyLink(linkForm).then((res) => {
             if (res.code == 200) {
@@ -118,22 +118,22 @@ export default defineComponent({
                       'hover:cursor-pointer',
                       'hover:bg-articleCard',
                     ]}
-                    onClick={() => toLink(item.siteUrl)}
+                    onClick={() => toLink(item.link)}
                   >
                     <div class="w-20 h-full flex justify-center items-center">
                       <el-avatar
                         shape="square"
                         class="duration-500 hover:scale-110"
-                        src={item.siteAvatar}
+                        src={item.avatar}
                         fit="cover"
                         size="large"
                       />
                     </div>
                     <div class="w-40">
                       <span class="mt-3 text-base font-bold line-clamp-1">
-                        {item.siteName}
+                        {item.name}
                       </span>
-                      <span class="text-xs line-clamp-2">{item.siteDesc}</span>
+                      <span class="text-xs line-clamp-2">{item.description}</span>
                     </div>
                   </div>
                 </el-col>
@@ -153,24 +153,28 @@ export default defineComponent({
           <el-form model={linkForm} ref={linkFormRef} label-width="80">
             <el-form-item
               label="网站头像"
-              prop="siteAvatar"
+              prop="avatar"
               rules={[
                 {
                   required: true,
                   trigger: 'change',
-                  message: '请上传头像',
+                  message: '请输入头像url',
                 },
               ]}
             >
-              <Upload
+              {/* <Upload
                 onGetFileList={getFileList}
                 fileSize={3}
                 file-list={fileList.value}
+              /> */}
+              <el-input
+                placeholder="请输入头像url"
+                v-model={linkForm.name}
               />
             </el-form-item>
             <el-form-item
               label="网站名称"
-              prop="siteName"
+              prop="name"
               rules={[
                 {
                   required: true,
@@ -181,12 +185,12 @@ export default defineComponent({
             >
               <el-input
                 placeholder="请输入网站名称"
-                v-model={linkForm.siteName}
+                v-model={linkForm.name}
               />
             </el-form-item>
             <el-form-item
               label="网站描述"
-              prop="siteDesc"
+              prop="description"
               rules={[
                 {
                   required: true,
@@ -197,12 +201,12 @@ export default defineComponent({
             >
               <el-input
                 placeholder="描述一下你的网站"
-                v-model={linkForm.siteDesc}
+                v-model={linkForm.description}
               />
             </el-form-item>
             <el-form-item
               label="网站地址"
-              prop="siteUrl"
+              prop="link"
               rules={[
                 {
                   required: true,
@@ -213,7 +217,7 @@ export default defineComponent({
             >
               <el-input
                 placeholder="必须以'http'或'https'开头"
-                v-model={linkForm.siteUrl}
+                v-model={linkForm.link}
               />
             </el-form-item>
             <el-button

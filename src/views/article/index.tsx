@@ -44,15 +44,15 @@ export default defineComponent({
     return () => (
       <div>
         <div class="mt-20">
-          <p class="text-center text-2xl">{articleInfo.value?.articleTitle}</p>
+          <p class="text-center text-2xl">{articleInfo.value?.title}</p>
           <div class="flex justify-center">
             <div class="flex items-center mr-4">
               <el-icon size="14" class="mr-1">
                 <View />
               </el-icon>
-              <el-text>{articleInfo.value?.browse}</el-text>
+              <el-text>{articleInfo.value?.views}</el-text>
             </div>
-            <el-text class="mr-4">{articleInfo.value?.categoryName}</el-text>
+            <el-text class="mr-4">{articleInfo.value?.categoryName || '前端'}</el-text>
             {articleInfo.value?.tags?.map((tag, index) => (
               <el-text class="mr-1" key={index}>
                 {'# ' + tag.tagName}
@@ -62,13 +62,14 @@ export default defineComponent({
         </div>
         <div class="my-0 mx-auto w-65 min-h-screen flex">
           <MdPreview
+            style={{fontSize:'12px'}}
             class="bg-transparent w-50"
             showCodeRowNumber
             theme={state.theme}
             codeTheme={state.codeTheme}
             previewTheme={state.previewTheme}
             editorId={state.id}
-            modelValue={articleInfo.value?.articleContent}
+            modelValue={articleInfo.value?.content}
           />
           <el-affix offset={70}>
             <el-text size="large">目录</el-text>

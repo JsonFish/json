@@ -3,7 +3,7 @@ import { ElMessage, ElLoading } from 'element-plus'
 import TypeWriter from '@/components/typeWriter/index.tsx'
 import { reqGithubLogin } from '@/api/user'
 import { blogInfor } from '@/api/info'
-import type { Information, LinksType } from '@/api/info/type'
+import type { LinksType } from '@/api/info/type'
 import { setToken } from '@/utils/token'
 import useUserStore from '@/store/modules/user'
 import { blogName } from '@/setting/blogInfo'
@@ -19,13 +19,25 @@ export default defineComponent({
       bilibili: '#54adde',
     }
     const userStore = useUserStore()
-    const blogInfoForm = ref<Information>({
+    const blogInfoForm = ref<any>({
       blogName: '', // 博客名
       blogAvatar: '', // 博客头像
       link: [],
     })
     blogInfor().then((response) => {
-      blogInfoForm.value = response.data
+      const data = response.data
+      const link = [
+        { title: 'github', url: data.githubLink },
+        { title: 'gitee', url: data.giteeLink },
+        { title: 'juejin', url: data.juejinLink },
+        { title: 'csdn', url: data.csdnLink },
+        { title: 'bilibili', url: data.bilibiliLink },
+      ]
+      blogInfoForm.value = {
+        blogName: data.blogName,
+        blogAvatar: data.blogAvatar,
+        link
+      }
     })
     onMounted(() => {
       // 处理github登录的code
@@ -75,7 +87,7 @@ export default defineComponent({
                 wordPrintTime={0.1}
                 typeList={[
                   '一名前端开发实习生。',
-                  'A Front End Development Intern .',
+                  'A Front End Development Intern.',
                 ]}
               />
               <div class="text-2xl mb-4 flex items-center">

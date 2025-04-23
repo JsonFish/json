@@ -4,7 +4,14 @@ import { LoginParmars, signInParmars } from '@/api/user/type'
 import { ElMessage } from 'element-plus'
 import useUserStore from '@/store/modules/user'
 import { client_id, redirect_uri } from '@/setting/github'
-
+import { setToken } from '@/utils/token'
+import {
+  Message,
+  Lock,
+  InfoFilled,
+  ChatDotRound,
+  Promotion,
+} from '@element-plus/icons-vue'
 export default defineComponent({
   setup(_, { expose }) {
     const dialogFormVisible = ref<boolean>(false)
@@ -77,13 +84,13 @@ export default defineComponent({
             try {
               await userStore.userLogin(loginForm)
               ElMessage({ type: 'info', message: '登录成功' })
+              closeDialog()
             } catch (err: any) {
               ElMessage({ type: 'error', message: err })
               loginForm.code = ''
               debounce()
             }
             loading.value = false
-            closeDialog()
           } else {
             return fields
           }
@@ -139,8 +146,9 @@ export default defineComponent({
             try {
               const response = await reqRegister(signInForm)
               if (response.code == 200) {
-                signInForm.freeCode = true
-                await userStore.userLogin(signInForm)
+                userStore.username = response.data.username
+                userStore.avatar = response.data.avatar
+                setToken(response.data)
                 ElMessage({ type: 'info', message: '注册成功! 已为您自动登录' })
                 closeDialog()
               } else {
@@ -194,7 +202,7 @@ export default defineComponent({
                     {
                       required: true,
                       message: '请输入邮箱',
-                      trigger: 'change',
+                      trigger: 'blur',
                     },
                   ]}
                 >
@@ -202,7 +210,7 @@ export default defineComponent({
                     clearable
                     v-model={loginForm.email}
                     placeholder="邮箱"
-                    prefixIcon="Message"
+                    prefixIcon={Message}
                     onChange={(e: any) => (loginForm.email = e.target.value)}
                   />
                 </el-form-item>
@@ -212,7 +220,7 @@ export default defineComponent({
                     {
                       required: true,
                       message: '请输入密码',
-                      trigger: 'change',
+                      trigger: 'blur',
                     },
                   ]}
                 >
@@ -221,7 +229,7 @@ export default defineComponent({
                     showPassword
                     v-model={loginForm.password}
                     placeholder="密码"
-                    prefixIcon="Lock"
+                    prefixIcon={Lock}
                     onChange={(e: any) => (loginForm.password = e.target.value)}
                   />
                 </el-form-item>
@@ -240,7 +248,7 @@ export default defineComponent({
                       clearable
                       v-model={loginForm.code}
                       placeholder="验证码"
-                      prefixIcon="InfoFilled"
+                      prefixIcon={InfoFilled}
                       class="w-3/5"
                       onChange={(e: any) => (loginForm.code = e.target.value)}
                     />
@@ -284,7 +292,7 @@ export default defineComponent({
                       min: 10,
                       max: 22,
                       message: '请输入有效邮箱',
-                      trigger: 'change',
+                      trigger: 'blur',
                     },
                   ]}
                 >
@@ -292,7 +300,7 @@ export default defineComponent({
                     clearable
                     v-model={signInForm.email}
                     placeholder="请输入有效邮箱"
-                    prefixIcon="Message"
+                    prefixIcon={Message}
                     onChange={(e: any) => (signInForm.email = e.target.value)}
                   ></el-input>
                 </el-form-item>
@@ -302,7 +310,7 @@ export default defineComponent({
                     {
                       required: true,
                       message: '请设置密码',
-                      trigger: 'change',
+                      trigger: 'blur',
                     },
                   ]}
                 >
@@ -311,7 +319,7 @@ export default defineComponent({
                     showPassword
                     v-model={signInForm.password}
                     placeholder="密码"
-                    prefixIcon="Lock"
+                    prefixIcon={Lock}
                     onChange={(e: any) =>
                       (signInForm.password = e.target.value)
                     }
@@ -325,7 +333,7 @@ export default defineComponent({
                       min: 4,
                       max: 6,
                       message: '请输入验证码',
-                      trigger: 'change',
+                      trigger: 'blur',
                     },
                   ]}
                 >
@@ -335,14 +343,14 @@ export default defineComponent({
                       clearable
                       v-model={signInForm.code}
                       placeholder="邮箱验证码"
-                      prefixIcon="ChatDotRound"
+                      prefixIcon={ChatDotRound}
                       onChange={(e: any) => (signInForm.code = e.target.value)}
                     />
                     <el-button
                       class="w-1/4 bg-loginBtnBg text-loginBtnText hover:bg-loginBtnHover hover:text-loginBtnText"
                       disabled={!signInForm.email || countDownIng.value}
                       plain
-                      icon="Promotion"
+                      icon={Promotion}
                       size="default"
                       onClick={sendEmail}
                     >
@@ -385,10 +393,10 @@ export default defineComponent({
               color="white"
               class="mr-2"
               name="github"
-              width="1.5rem"
-              height="1.5rem"
+              width="1rem"
+              height="1rem"
             ></svg-icon>
-            使用GitHub登录
+            GitHub登录
           </el-button>
         </el-dialog>
       </div>
