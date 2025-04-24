@@ -15,6 +15,7 @@ export default defineComponent({
     const visible = ref<boolean>(false)
     const linkFormRef = ref<FormInstance>()
     const fileList = ref<UploadUserFile[]>([])
+    const total = ref<number>(0)
     const linkForm = reactive<LinkInfo>({
       avatar: '',
       name: '',
@@ -27,6 +28,7 @@ export default defineComponent({
     const getLinkList = () => {
       getLink().then((response) => {
         linkList.value = response.data.linkList
+        total.value = response.data.total
       })
     }
     // 跳转
@@ -89,16 +91,17 @@ export default defineComponent({
     }
     return () => (
       <div>
-        <div class="flex justify-center items-center text-4xl mb-2">
-          <p>友链</p>
-        </div>
         <div>
           <div class="text-center my-5">
             <el-button onClick={apply} plain>
-              申请友链
+              apply
             </el-button>
           </div>
           <div class="mx-auto my-0 w-65">
+            <div class="w-full h-20 ml-4">
+              <p class="text-3xl">Links</p>
+              <p class="text-xs">{total.value} links</p>
+            </div>
             <el-row>
               {linkList.value.map((item: LinkInfo, index: number) => (
                 <el-col key={item.id} span={6}>
@@ -109,9 +112,9 @@ export default defineComponent({
                       'justify-between',
                       'border',
                       'border-solid',
-                      'border-slate-500',
+                      'border-slate-400',
                       'h-20',
-                      'rounded-lg',
+                      'rounded-2xl',
                       'm-2',
                       'opacity-0',
                       'translate-x-1/4',
@@ -133,7 +136,9 @@ export default defineComponent({
                       <span class="mt-3 text-base font-bold line-clamp-1">
                         {item.name}
                       </span>
-                      <span class="text-xs line-clamp-2">{item.description}</span>
+                      <span class="text-xs line-clamp-2">
+                        {item.description}
+                      </span>
                     </div>
                   </div>
                 </el-col>
@@ -167,10 +172,7 @@ export default defineComponent({
                 fileSize={3}
                 file-list={fileList.value}
               /> */}
-              <el-input
-                placeholder="请输入头像url"
-                v-model={linkForm.name}
-              />
+              <el-input placeholder="请输入头像url" v-model={linkForm.name} />
             </el-form-item>
             <el-form-item
               label="网站名称"
@@ -183,10 +185,7 @@ export default defineComponent({
                 },
               ]}
             >
-              <el-input
-                placeholder="请输入网站名称"
-                v-model={linkForm.name}
-              />
+              <el-input placeholder="请输入网站名称" v-model={linkForm.name} />
             </el-form-item>
             <el-form-item
               label="网站描述"

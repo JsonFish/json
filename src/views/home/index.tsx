@@ -96,8 +96,11 @@ export default defineComponent({
                 <span class="text-emerald-400">Vue</span>, &ensp;
                 <Svg-Icon width="24px" height="24px" name="react" />
                 <span class="text-cyan-500">React</span> &ensp;And&ensp;
-                <Svg-Icon width="24px" height="24px" name="nodejs" />
-                <span class="text-lime-600">NodeJs</span>.
+                <Svg-Icon width="24px" height="24px" name="nestjs" />
+                <span class="text-rose-600">NestJs</span>.
+              </div>
+              <div>
+                <p class='text-sm mb-1'>More about me</p>
               </div>
               <div class="flex gap-4 h-8">
                 {blogInfoForm.value.link.map((item: LinksType) => {

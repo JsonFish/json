@@ -1,12 +1,13 @@
-import request from "@/utils/request";
-import type { BasicResponse, MessageInfo } from "./type";
+import request from '@/utils/request'
+import type { BasicResponse, MessageInfoList } from './type'
 enum API {
-    Message = "/messageList",
-    AddMessage = "/message"
+  Message = '/message',
 }
 export const getMessage = () => {
-    return request.get<any, BasicResponse<MessageInfo[]>>(API.Message);
-};
+  return request.get<any, BasicResponse<MessageInfoList>>(
+    API.Message + `?page=1&pageSize=100`,
+  )
+}
 export const addMessage = (data: { text: string }) => {
-    return request.post<any, BasicResponse<any>>(API.AddMessage, data);
-};
+  return request.post<any, BasicResponse<any>>(API.Message, data)
+}

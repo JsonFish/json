@@ -16,7 +16,7 @@ export default defineComponent({
     })
     const getMessageList = () => {
       getMessage().then((response) => {
-        danmus.value = response.data
+        danmus.value = response.data.messageList
       })
     }
     const add = async () => {
