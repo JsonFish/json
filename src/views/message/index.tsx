@@ -11,6 +11,7 @@ export default defineComponent({
     const userStore = useUserStore()
     const danmus = ref<MessageInfo[]>()
     const danmakuRef = ref<any>()
+    const loading = ref<boolean>(false)
     const text = ref<string>('')
     const total = ref<number>(0)
     onMounted(() => {
@@ -28,6 +29,11 @@ export default defineComponent({
         text.value = ''
         return
       }
+      if (text.value.length < 1) {
+        ElMessage({ type: 'info', message: '请输入留言内容' })
+        return
+      }
+      loading.value = true
       await addMessage({ text: text.value }).then((response) => {
         if (response.code == 200) {
           ElMessage({ type: 'info', message: '留言成功' })
@@ -36,6 +42,7 @@ export default defineComponent({
         } else {
           ElMessage({ type: 'error', message: response.message })
         }
+        loading.value = false
       })
     }
     return () => (
@@ -75,7 +82,11 @@ export default defineComponent({
             >
               {{
                 append: () => (
-                  <el-button icon={Promotion} onClick={() => add()}>
+                  <el-button
+                    loading={loading.value}
+                    icon={Promotion}
+                    onClick={() => add()}
+                  >
                     发送
                   </el-button>
                 ),
