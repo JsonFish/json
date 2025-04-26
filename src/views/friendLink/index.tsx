@@ -91,60 +91,56 @@ export default defineComponent({
     }
     return () => (
       <div>
-        <div>
-          <div class="text-center my-5">
-            <el-button onClick={apply} plain>
-              apply
-            </el-button>
+        <div class="text-center my-5">
+          <el-button onClick={apply} plain>
+            apply
+          </el-button>
+        </div>
+        <div class="mx-auto my-0 w-65">
+          <div class="w-full h-20 ml-4">
+            <p class="text-3xl">Links</p>
+            <p class="text-xs">{total.value} links</p>
           </div>
-          <div class="mx-auto my-0 w-65">
-            <div class="w-full h-20 ml-4">
-              <p class="text-3xl">Links</p>
-              <p class="text-xs">{total.value} links</p>
-            </div>
-            <el-row>
-              {linkList.value.map((item: LinkInfo, index: number) => (
-                <el-col key={item.id} span={6}>
-                  <div
-                    class={[
-                      'an' + (index + 1),
-                      'flex',
-                      'justify-between',
-                      'border',
-                      'border-solid',
-                      'border-slate-400',
-                      'h-20',
-                      'rounded-2xl',
-                      'm-2',
-                      'opacity-0',
-                      'translate-x-1/4',
-                      'hover:cursor-pointer',
-                      'hover:bg-articleCard',
-                    ]}
-                    onClick={() => toLink(item.link)}
-                  >
-                    <div class="w-20 h-full flex justify-center items-center">
-                      <el-avatar
-                        shape="square"
-                        class="duration-500 hover:scale-110"
-                        src={item.avatar}
-                        fit="cover"
-                        size="large"
-                      />
-                    </div>
-                    <div class="w-40">
-                      <span class="mt-3 text-base font-bold line-clamp-1">
-                        {item.name}
-                      </span>
-                      <span class="text-xs line-clamp-2">
-                        {item.description}
-                      </span>
-                    </div>
+          <el-row>
+            {linkList.value.map((item: LinkInfo, index: number) => (
+              <el-col key={item.id} span={6}>
+                <div
+                  class={[
+                    'an' + (index + 1),
+                    'flex',
+                    'justify-between',
+                    'border',
+                    'border-solid',
+                    'border-slate-400',
+                    'h-20',
+                    'rounded-2xl',
+                    'm-2',
+                    'opacity-0',
+                    'translate-x-1/4',
+                    'hover:cursor-pointer',
+                    'hover:bg-articleCard',
+                  ]}
+                  onClick={() => toLink(item.link)}
+                >
+                  <div class="w-20 h-full flex justify-center items-center">
+                    <el-avatar
+                      shape="square"
+                      class="duration-500 hover:scale-110"
+                      src={item.avatar}
+                      fit="cover"
+                      size="large"
+                    />
                   </div>
-                </el-col>
-              ))}
-            </el-row>
-          </div>
+                  <div class="w-40">
+                    <span class="mt-3 text-base font-bold line-clamp-1">
+                      {item.name}
+                    </span>
+                    <span class="text-xs line-clamp-2">{item.description}</span>
+                  </div>
+                </div>
+              </el-col>
+            ))}
+          </el-row>
         </div>
         <el-dialog
           onClose={closeDialog}

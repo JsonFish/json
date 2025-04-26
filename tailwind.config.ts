@@ -33,6 +33,12 @@ export default {
         70: '70rem',
         75: '75rem',
       },
+      height: {
+        30: '20rem',
+      },
+      fontSize: {
+        10: '0.6rem',
+      },
     },
   },
   plugins: [],
