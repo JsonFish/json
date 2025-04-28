@@ -36,7 +36,7 @@ export default defineComponent({
       blogInfoForm.value = {
         blogName: data.blogName,
         blogAvatar: data.blogAvatar,
-        link
+        link,
       }
     })
     onMounted(() => {
@@ -100,7 +100,7 @@ export default defineComponent({
                 <span class="text-rose-600">NestJs</span>.
               </div>
               <div>
-                <p class='text-sm mb-1'>More about me</p>
+                <p class="text-sm mb-1">More about me</p>
               </div>
               <div class="flex gap-4 h-8">
                 {blogInfoForm.value.link.map((item: LinksType) => {

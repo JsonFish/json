@@ -5,7 +5,6 @@ import { uploadFile } from '@/utils/upload'
 import useUserStore from '@/store/modules/user'
 import { ElMessage } from 'element-plus'
 import { type UploadUserFile, type FormInstance } from 'element-plus'
-import Upload from '@/components/upload/index'
 import './index.scss'
 export default defineComponent({
   name: 'friendLink',
@@ -34,10 +33,6 @@ export default defineComponent({
     // 跳转
     const toLink = (url: string) => {
       window.open(url, '_blank')
-    }
-    // 获取文件
-    const getFileList = (file: UploadUserFile[]) => {
-      fileList.value = file
     }
     // 打开弹窗
     const apply = () => {
@@ -91,15 +86,13 @@ export default defineComponent({
     }
     return () => (
       <div>
-        <div class="text-center my-5">
-          <el-button onClick={apply} plain>
-            apply
-          </el-button>
-        </div>
         <div class="mx-auto my-0 w-65">
           <div class="w-full h-20 ml-4">
             <p class="text-3xl">Links</p>
             <p class="text-xs">{total.value} links</p>
+          </div>
+          <div class="text-center my-5">
+            <el-button onClick={apply}>apply</el-button>
           </div>
           <el-row>
             {linkList.value.map((item: LinkInfo, index: number) => (
