@@ -8,9 +8,9 @@ import path from 'path'
 import tailwindcss from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 
-export default defineConfig(({command,mode}:ConfigEnv):UserConfig => {
-  let env = loadEnv(mode, process.cwd());
-  console.log(command);
+export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
+  let env = loadEnv(mode, process.cwd())
+  console.log(command)
   return {
     plugins: [
       vue(),
@@ -22,8 +22,8 @@ export default defineConfig(({command,mode}:ConfigEnv):UserConfig => {
     ],
     resolve: {
       alias: {
-        "@": path.resolve("./src") // 相对路径别名配置，使用 @ 代替 src
-      }
+        '@': path.resolve('./src'), // 相对路径别名配置，使用 @ 代替 src
+      },
     },
     // 全局css
     css: {
@@ -33,19 +33,24 @@ export default defineConfig(({command,mode}:ConfigEnv):UserConfig => {
         },
       },
       // taiwindcss 配置
-      postcss:{
-        plugins: [tailwindcss, autoprefixer]
-      }
+      postcss: {
+        plugins: [tailwindcss, autoprefixer],
+      },
     },
     // 代理跨域
     server: {
       port: parseInt(env.VITE_PORT),
       proxy: {
-        "/api": {
+        '/api': {
           target: env.VITE_URL,
           changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, "") // 去除请求路径中的 /api 例 请求 /api/getinfo 后端实际收到的地址为 /getinfo
-        }
+          rewrite: (path) => path.replace(/^\/api/, ''), // 去除请求路径中的 /api 例 请求 /api/getinfo 后端实际收到的地址为 /getinfo
+        },
+        '/music': {
+          target: 'http://mrzym.top:3000',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/music/, ''),
+        },
       },
     },
   }

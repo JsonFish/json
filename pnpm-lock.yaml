@@ -17,6 +17,9 @@ importers:
       element-plus:
         specifier: ^2.5.3
         version: 2.6.1(vue@3.3.4)
+      gsap:
+        specifier: 3.12.2
+        version: 3.12.2
       md-editor-v3:
         specifier: ^4.12.1
         version: 4.12.1(@codemirror/view@6.26.0)(@lezer/common@1.2.1)(vue@3.3.4)
@@ -1500,6 +1503,9 @@ packages:
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+
+  gsap@3.12.2:
+    resolution: {integrity: sha512-EkYnpG8qHgYBFAwsgsGEqvT1WUidX0tt/ijepx7z8EUJHElykg91RvW1XbkT59T0gZzzszOpjQv7SE41XuIXyQ==}
 
   hard-rejection@2.1.0:
     resolution: {integrity: sha512-VIZB+ibDhx7ObhAe7OVtoEbuP4h/MuOTHJ+J8h/eBXotJYl0fBgR72xDFCKgIh22OJZIOVNxBMWuhAr10r8HdA==}
@@ -4746,6 +4752,8 @@ snapshots:
       minimatch: 3.0.8
 
   graceful-fs@4.2.11: {}
+
+  gsap@3.12.2: {}
 
   hard-rejection@2.1.0: {}
 

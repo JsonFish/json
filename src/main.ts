@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 // 引入elementplus
 import ElementPlus from 'element-plus'
+import './assets/css/iconFont/iconfont.css'
 import 'element-plus/dist/index.css'
 // 引入element-plus的暗黑模式
 import 'element-plus/theme-chalk/dark/css-vars.css'

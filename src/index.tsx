@@ -1,4 +1,5 @@
 import { defineComponent, onMounted } from 'vue'
+import MusicPlayer from '@/components/Music/index.vue'
 
 export default defineComponent({
   setup() {
@@ -8,7 +9,12 @@ export default defineComponent({
       )
     })
     return () => {
-      return <routerView />
+      return (
+        <div>
+          <MusicPlayer />
+          <routerView />
+        </div>
+      )
     }
   },
 })

@@ -97,7 +97,7 @@ export default defineComponent({
           </div>
           <div class="mx-auto my-0 w-65">
             {danmus.value?.map((item: MessageInfo) => (
-              <div class="py-3 w-full max-w-2xl mx-auto border-b border-dashed border-gray-500">
+              <div class="py-3 w-full max-w-2xl mx-auto border-b border-dashed border-gray-600">
                 <div class="flex items-start">
                   <img
                     class="w-14 h-14 rounded-full"

@@ -32,6 +32,12 @@
   --login-btn-color: #fff;
   // 登录按钮hover背景颜色
   --login-btn-color-hover: #2d2d2d;
+
+  // music
+  --music-main-active: #62c28a;
+  --music-main-bg: #fff;
+  --mask-bg: rgba(0, 0, 0, 0.5);
+  --shadow-button-bg: rgba(210, 210, 210, 0.5);
 }
 // 暗黑主题
 :root.dark {
@@ -57,6 +63,10 @@
   --login-btn-bg-color: #fafafa;
   --login-btn-color: #000000;
   --login-btn-color-hover: #e1e1e1;
+
+  // music
+  --shadow-button-bg: rgba(0, 0, 0, 0.2);
+  --music-main-bg: #303030;
 }
 
 /* 关闭默认动画，否则影响自定义动画的执行 */
