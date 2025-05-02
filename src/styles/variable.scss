@@ -36,10 +36,11 @@
   --chat-bg-color: #f6f6f6;
 
   // music
-  --music-main-active: #62c28a;
+  --music-main-active: #6277c2;
   --music-main-bg: #fff;
   --mask-bg: rgba(0, 0, 0, 0.5);
   --shadow-button-bg: rgba(210, 210, 210, 0.5);
+  --primary: #0055ff;
 }
 // 暗黑主题
 :root.dark {
@@ -70,6 +71,7 @@
   // music
   --shadow-button-bg: rgba(0, 0, 0, 0.2);
   --music-main-bg: #303030;
+  --primary: #0077ff;
 }
 
 /* 关闭默认动画，否则影响自定义动画的执行 */

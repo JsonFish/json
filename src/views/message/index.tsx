@@ -65,7 +65,7 @@ export default defineComponent({
             ),
           }}
         </VueDanmaku>
-        <div class="">
+        <div>
           <div class="w-45 mx-auto flex">
             <div>
               <p class="text-3xl">Message</p>
