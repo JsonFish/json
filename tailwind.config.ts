@@ -22,6 +22,8 @@ export default {
         loginBtnHover: 'var(--login-btn-color-hover)',
         // 文章列表hover时背景颜色
         articleCard: 'var(--article-card-background-color)',
+        // 聊天框背景颜色
+        chatBg: 'var(--chat-bg-color)',
       },
       width: {
         5: '15rem',

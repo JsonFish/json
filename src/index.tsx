@@ -1,6 +1,6 @@
 import { defineComponent, onMounted } from 'vue'
 import MusicPlayer from '@/components/Music/index.vue'
-
+import Chat from '@/components/Chat/index.tsx'
 export default defineComponent({
   setup() {
     onMounted(() => {
@@ -12,6 +12,7 @@ export default defineComponent({
       return (
         <div>
           <MusicPlayer />
+          <Chat />
           <routerView />
         </div>
       )
