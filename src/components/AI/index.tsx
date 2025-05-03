@@ -46,7 +46,7 @@ export default defineComponent({
         username: 'DeepSeek',
         avatar:
           'https://picx.zhimg.com/v2-dabcd3ba1cbbf8e188aac13ad1a25106_xll.jpg?source=32738c0c&needBackground=1',
-        message: '你好👋！请问有什么可以帮到你',
+        message: '你好👋！我是 DeepSeek，很高兴见到你！',
       },
     ])
     const messageListRef = ref<HTMLElement | null>(null)
@@ -74,7 +74,7 @@ export default defineComponent({
       if (
         evt instanceof KeyboardEvent &&
         evt.code === 'Enter' &&
-        loading.value !== true
+        loading.value !== true && newMessage.value
       ) {
         evt.preventDefault()
         sendMessage()
