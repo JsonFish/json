@@ -1,4 +1,3 @@
-// src/components/Chat/index.tsx
 import { defineComponent, ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { Promotion } from '@element-plus/icons-vue'
 import { ElButton, ElDialog, ElInput, ElAvatar, ElCard } from 'element-plus'
@@ -114,8 +113,8 @@ export default defineComponent({
           onClick={toggleChat}
           class="fixed bottom-10 right-2 hover: cursor-pointer z-20"
           name="chat"
-          width="3rem"
-          height="3rem"
+          width="2.5rem"
+          height="2.5rem"
         />
 
         <ElDialog

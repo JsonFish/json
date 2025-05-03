@@ -37,6 +37,7 @@ export default {
       },
       height: {
         30: '20rem',
+        38: '38rem',
       },
       fontSize: {
         10: '0.6rem',

@@ -62,7 +62,7 @@ export default defineComponent({
         </div>
         <div class="my-0 mx-auto w-65 min-h-screen flex">
           <MdPreview
-            style={{fontSize:'12px'}}
+            style={{fontSize:'10px'}}
             class="bg-transparent w-50"
             showCodeRowNumber
             theme={state.theme}
