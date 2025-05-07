@@ -74,7 +74,8 @@ export default defineComponent({
       if (
         evt instanceof KeyboardEvent &&
         evt.code === 'Enter' &&
-        loading.value !== true && newMessage.value
+        loading.value !== true &&
+        newMessage.value
       ) {
         evt.preventDefault()
         sendMessage()

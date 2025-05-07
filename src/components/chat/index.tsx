@@ -132,7 +132,9 @@ export default defineComponent({
             header: () => (
               <p class="pt-2 pl-4">
                 聊天室
-                <span class=" ml-2 text-xs text-gray-500	">当前在线 {onlineNumber.value} 人</span>
+                <span class=" ml-2 text-xs text-gray-500	">
+                  当前在线 {onlineNumber.value} 人
+                </span>
               </p>
             ),
             default: () => (
