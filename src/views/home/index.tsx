@@ -86,7 +86,7 @@ export default defineComponent({
                 timeSpace={1}
                 wordPrintTime={0.1}
                 typeList={[
-                  '一名前端开发实习生。',
+                  '一名前端开发工程师。',
                   'A Front End Development Intern.',
                 ]}
               />
